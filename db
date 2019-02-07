@@ -1,3 +1,8 @@
-serial1:chavelmk
-serial2:chavelkm
-serial3:chavemkl
+!gateway_a
+serial1:nonce:chavelmk
+serial2:tonce:chavelkm
+serial3:tronce:chavemkl
+!gateway_b
+serial1:nonce:chavelmk
+serial2:tonce:chavemlk
+serial3:tronce:chavelkm

@@ -1,18 +1,16 @@
 from flask import Flask, request, jsonify
-from Validator import Validator
+from Connector import Connector
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "9WjsiJ74/NcwpLm6MuCV9RLZygQh5V2v79Df8/QsaKQ="
 
-validator = Validator()
+connector = Connector()
 
 @app.route("/search", methods=['POST'])
 def search():
-	isValid = validator.test(request.form.get('token'))
-	if isValid == False:
-		return "Token not valid!"
-	
-	return "Token valid, return search"
+	if connector.checkToken(request.form.get('token')) == False:
+		return "Token expired"	
+	return connector.req("GetInfo", request.form.get('gateway'))
 
 if __name__ == "__main__":
     app.run(ssl_context=('cert.pem', 'key.pem'), host="0.0.0.0")
