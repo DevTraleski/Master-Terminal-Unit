@@ -46,13 +46,16 @@ class Connector:
 			return False
 
 	def req(self, requisition, gateway):
-		conn = http.client.HTTPSConnection(self.address[gateway], 4000)
-		header = {'Content-Type' : 'application/x-www-form-urlencoded;charset=UTF-8'}
-		body = 'req=' + requisition
-		conn.request('POST', '/search', body, header)
-		response = conn.getresponse()
-		return response.read().decode("utf-8")
+		if gateway in self.address.keys():
+			conn = http.client.HTTPSConnection(self.address[gateway], 4000)
+			header = {'Content-Type' : 'application/x-www-form-urlencoded;charset=UTF-8'}
+			body = 'req=' + requisition
+			conn.request('POST', '/search', body, header)
+			response = conn.getresponse()
+			return response.read().decode("utf-8")
+		else:
+			return "Gateway not found"
 
 
 #Test
-#Connector().checkToken("toke")
+#print(Connector().req("Search", "gadeway"))
