@@ -36,7 +36,7 @@ class Connector:
 		print(token)
 		conn = http.client.HTTPSConnection('172.0.17.2', 9443)
 		header = {'Authorization' : 'Basic YWRtaW46YWRtaW4=', 'Content-Type' : 'application/x-www-form-urlencoded;charset=UTF-8'}
-		body = 'token=' + token
+		body = 'token=' + token.split(' ')[1]
 		conn.request('POST', '/oauth2/introspect', body, header)
 		response = conn.getresponse()
 		jsonResponse = json.loads(response.read().decode("utf-8"))
@@ -45,12 +45,12 @@ class Connector:
 		else:
 			return False
 
-	def req(self, requisition, gateway):
+	def req(self, token, requisition, gateway):
 		if gateway in self.address.keys():
 			conn = http.client.HTTPSConnection(self.address[gateway], 4000)
-			header = {'Content-Type' : 'application/x-www-form-urlencoded;charset=UTF-8'}
+			header = {'Authorization' : token, 'Content-Type' : 'application/x-www-form-urlencoded;charset=UTF-8'}
 			body = 'req=' + requisition
-			conn.request('POST', '/search', body, header)
+			conn.request('GET', '/search', body, header)
 			response = conn.getresponse()
 			return response.read().decode("utf-8")
 		else:
