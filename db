@@ -1,5 +1,5 @@
 !gateway_a
-serial1:nonce:chavelmk
+serial1:base32secret3232:chavelmk
 serial2:tonce:chavelkm
 serial3:tronce:chavemkl
 !gateway_b
