@@ -16,5 +16,22 @@ def search():
 
 	return connector.req(token, req, gateway)
 
+@app.route("/response", methods=['GET', 'POST'])
+def response():
+	data = request.form.get('res')
+	return connector.receive(data)
+
+@app.route("/getdata")
+def getdata():
+	return connector.returnData()
+
+@app.route("/setup")
+def setup():
+	gateway = request.form.get('gateway')
+	serial = request.form.get('serial')
+	gnonce = request.form.get('gnonce')
+	dtlsk = request.form.get('dtlsk')
+	return connector.setup(gateway, serial, gnonce, dtlsk)
+
 if __name__ == "__main__":
     app.run(ssl_context=('cert.pem', 'key.pem'), host="0.0.0.0")
