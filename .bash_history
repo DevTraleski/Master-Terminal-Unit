@@ -169,3 +169,8 @@ python3 main.py
 nano Connector.py 
 python3 main.py 
 exit
+cd
+git add --all .
+git commit -m "GetInfo and Setup implemented"
+git push
+exit
