@@ -7,8 +7,11 @@ import pyotp
 import hashlib
 import binascii
 import os
+import time
+import datetime
 
 class Connector:
+	alerts = []
 
 	database = {}
 	address = {}		
@@ -16,9 +19,12 @@ class Connector:
 	readings = "Null"
 
 	def __init__(self):
+		self._loadDB()
+
+	def _loadDB(self):
 		with open("db", "r") as f:
 			data = f.readlines()
- 		
+
 		selectedGateway = "none"
 		for line in data:
 			if line[:1] == "!":
@@ -33,12 +39,17 @@ class Connector:
 
 		with open("address", "r") as f:
 			add = f.readlines()
-		
 		for line in add:
 			info = line.split(":")
 			self.address[info[0]] = info[1][:-1]
 
-		#print(self.address)
+		with open("alerts", "r") as f:
+			add = f.readlines()
+
+		for line in add:
+			info = line.split(";")
+			self.alerts.append(info[0] + " " + info[1] + " " + info[2][:-1])
+		print(self.alerts)
 
 	def checkToken(self, token):
 		print(token)
@@ -125,6 +136,24 @@ class Connector:
 			return '{"error":"Serial not found on database"}'
 
 		
+	def receiveAlert(self, payload, gateway):
+		print("Alert received")
+
+		dict = json.loads(payload)
+
+		serial = dict['serial']
+
+		if serial in self.database[gateway].keys():
+			plainText = self._decode(payload, self.database[gateway][serial])
+			print(plainText)
+			with open("alerts", "a") as f:
+				f.write(serial + ';' + plainText + ';' + datetime.datetime.fromtimestamp(dict['timestamp']).strftime('%Y-%m-%d %H:%M:%S') + '\n')
+			self._loadDB()
+			
+	def returnAlerts(self):
+		self._loadDB()
+		print("Return alerts")
+		return str(self.alerts)
 
 #Test
 #print(Connector().req("Search", "gadeway"))

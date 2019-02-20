@@ -174,3 +174,14 @@ git add --all .
 git commit -m "GetInfo and Setup implemented"
 git push
 exit
+cd
+ls
+python3 main.py 
+ls
+nano db 
+python3 main.py 
+ls
+git add --all .
+git commit -m "Acho q eu nem fiz nada aqui"
+git push
+exit
