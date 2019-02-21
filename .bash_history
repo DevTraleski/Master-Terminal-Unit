@@ -185,3 +185,102 @@ git add --all .
 git commit -m "Acho q eu nem fiz nada aqui"
 git push
 exit
+ifconfig
+cd
+ls
+nano main.py 
+nano Connector.py 
+ls
+nano alerts
+nano Connector.py 
+nano main.py 
+nano Connector.py 
+python3 main.py 
+nano Connector.py 
+python3 main.py 
+nano main.py 
+python3 main.py 
+nano main.py 
+python3 main.py 
+ls
+nano  Connector.py 
+nano  Connector.py 
+nano main.py 
+cat db 
+nano main.py 
+nano Connector.py 
+python3 main.py 
+cat alerts 
+nano Connector.py 
+python3 main.py 
+nano alerts 
+python3 main.py 
+nano Connector.py 
+python3 main.py 
+ls
+cat db 
+cat alerts 
+python3 main.py 
+nano Connector.py 
+nano Connector.py 
+python3 main.py 
+cat alerts 
+python3 main.py 
+ls
+cat alerts 
+nano Connector.py 
+nano main.py 
+nano Connector.py 
+nano main.py 
+nano Connector.py 
+nano main.py 
+python3 main.py 
+ls
+cat alerts 
+python3 main.py 
+nano Connector.py 
+python3 main.py 
+ls
+nano Connector.py 
+python3 main.py 
+ls
+nano alerts 
+nano Connector.py 
+python3 main.py 
+ls
+nano Connector.py 
+python3 main.py 
+cat alerts 
+nano Connector.py 
+python3 main.py 
+ls
+nano Connector.py 
+python3 main.py 
+ls
+nano alerts 
+ls
+nano alerts 
+nano Connector.py 
+python3 main.py 
+ls
+nano db 
+cat db 
+python3 main.py 
+cat alerts 
+nano alerts 
+python3 main.py 
+ls
+nano db 
+nano alerts 
+nano db 
+python3 main.py 
+ls
+nano alerts 
+python3 main.py 
+git add --all .
+git commit -m "Prototipo pronto"
+git push[
+git push
+exit
+exit
+exit
