@@ -17,9 +17,11 @@ class Connector:
 	address = {}		
 	responses = {}
 	readings = "Null"
+	startTime = time.time()
 
 	def __init__(self):
 		self._loadDB()
+		self.startTime = time.time()
 
 	def _loadDB(self):
 		with open("db", "r") as f:
@@ -50,6 +52,7 @@ class Connector:
 			self.alerts.append(info[0] + " " + info[1] + " " + info[2][:-1])
 
 	def checkToken(self, token):
+		self.searchTime = time.time()
 		conn = http.client.HTTPSConnection('172.0.17.2', 9443)
 		header = {'Authorization' : 'Basic YWRtaW46YWRtaW4=', 'Content-Type' : 'application/x-www-form-urlencoded;charset=UTF-8'}
 		body = 'token=' + token.split(' ')[1]
@@ -63,6 +66,8 @@ class Connector:
 
 	def req(self, token, requisition, gateway):
 		if gateway in self.address.keys():
+			self.readings = "Null"
+			self.responses = {}
 			conn = http.client.HTTPSConnection(self.address[gateway], 4000)
 			header = {'Authorization' : token, 'Content-Type' : 'application/x-www-form-urlencoded;charset=UTF-8'}
 			body = 'req=' + requisition
@@ -89,6 +94,7 @@ class Connector:
 	def returnData(self):
 		response = self.readings
 		self.readings = "Null"
+		self.responses = {}
 		return response
 	
 

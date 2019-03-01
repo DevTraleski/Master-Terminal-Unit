@@ -284,3 +284,59 @@ git push
 exit
 exit
 exit
+cd
+python3 main.py 
+ls
+nano main.py 
+nano Connector.py 
+python3 main.py 
+nano Connector.py 
+python3 main.py 
+ls
+git add --all .
+git commit -m "Changes for tests"
+git push
+exit
+cd
+l
+ls
+python3 main.py 
+ls
+cat db 
+ls
+python3 main.py 
+nano Connector.py 
+python3 main.py 
+python3 main.py 
+exit
+exit
+uname -a
+exit
+exit
+cd
+ls
+nano main.py 
+nano Connector.py 
+exit
+cd
+ls
+python3 main.py 
+ls
+nano main.py 
+python3 main.py 
+nano main.py 
+python3 main.py 
+nano main.py 
+python3 main.py 
+ls
+nano main.py 
+python3 main.py 
+nano main.py 
+python3 main.py 
+nano Connector.py 
+python3 main.py 
+nano Connector.py 
+python3 main.py 
+nano Connector.py 
+python3 main.py 
+exit
