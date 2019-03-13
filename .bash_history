@@ -340,3 +340,65 @@ python3 main.py
 nano Connector.py 
 python3 main.py 
 exit
+cd
+ls
+python3 main.py 
+nano Connector.py 
+python3 main.py 
+ls
+nano Connector.py 
+python3 main.py 
+nano Connector.py 
+python3 main.py 
+nano Connector.py 
+python3 main.py 
+nano Connector.py 
+python3
+ls
+nano Connector.py 
+python3 main.py 
+l
+ls
+nano Connector.py 
+python3 main.py 
+ls
+nano Connector.py 
+python3 main.py 
+python3 main.py 
+nano main.py 
+nano Connector.py 
+python3 main.py 
+nano main.py 
+python3 main.py 
+nano main.py 
+python3 main.py 
+nano main.py 
+nano main.py 
+nano Connector.py 
+nano main.py 
+python3 main.py 
+nano main.py 
+python3 main.py 
+nano main.py 
+python3 main.py 
+ls
+nano Connector.py 
+python3 main.py 
+nano Connector.py 
+python3 main.py 
+ls
+git add --all .
+git commit -m "Testes ta foda"
+git push
+exit
+cd
+ls
+python3 main.py 
+ls
+nano main.py 
+python3 main.py 
+nano main.py 
+python3 main.py 
+python3 main.py 
+python3 main.py 
+exit

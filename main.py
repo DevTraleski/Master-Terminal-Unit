@@ -45,7 +45,7 @@ def response():
 	data = request.form.get('res')
 
 	endTime = time.time() - connector.startTime
-	print(datetime.datetime.fromtimestamp(endTime).strftime('Result Time: %S,%f')[:-3])
+	print(datetime.datetime.fromtimestamp(endTime).strftime('%H:%M:%S,%f')[:-3])
 
 	return connector.receive(data)
 
