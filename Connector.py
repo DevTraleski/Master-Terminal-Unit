@@ -15,13 +15,9 @@ class Connector:
 
 	database = {}
 	address = {}		
-	responses = {}
-	readings = "Null"
-	startTime = time.time()
 
 	def __init__(self):
 		self._loadDB()
-		self.startTime = time.time()
 
 	def _loadDB(self):
 		with open("db", "r") as f:
@@ -52,7 +48,6 @@ class Connector:
 			self.alerts.append(info[0] + " " + info[1] + " " + info[2][:-1])
 
 	def checkToken(self, token):
-		self.searchTime = time.time()
 		conn = http.client.HTTPSConnection('172.0.17.2', 9443)
 		header = {'Authorization' : 'Basic YWRtaW46YWRtaW4=', 'Content-Type' : 'application/x-www-form-urlencoded;charset=UTF-8'}
 		body = 'token=' + token.split(' ')[1]
@@ -73,30 +68,19 @@ class Connector:
 			body = 'req=' + requisition
 			conn.request('GET', '/search', body, header)
 			response = conn.getresponse()
-			return response.read().decode("utf-8")
+
+			dict = json.loads(response.read().decode("utf-8"))
+
+			responses = {}
+			for serial in self.database['gateway_a'].keys():
+				if serial in dict.keys():
+					decoded = self._decode(dict[serial], self.database['gateway_a'][serial])
+					responses[serial] = decoded
+
+			return json.dumps(responses)
 		else:
 			return "Gateway not found"
 
-
-
-	def receive(self, data):
-		dict = json.loads(data)
-
-		for serial in self.database['gateway_a'].keys():
-			if serial in dict.keys():
-				decoded = self._decode(dict[serial], self.database['gateway_a'][serial])
-				self.responses[serial] = decoded
-
-		self.readings = "Null"
-		self.readings = json.dumps(self.responses)
-		return "Received"
-
-	def returnData(self):
-		response = self.readings
-		self.readings = "Null"
-		self.responses = {}
-		return response
-	
 
 	def _decode(self, payload, key):
 		dict = json.loads(payload)
@@ -156,6 +140,3 @@ class Connector:
 	def returnAlerts(self):
 		self._loadDB()
 		return str(self.alerts)
-
-#Test
-#print(Connector().req("Search", "gadeway"))

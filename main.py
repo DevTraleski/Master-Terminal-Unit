@@ -4,9 +4,6 @@ from logging.config import dictConfig
 import time
 import datetime
 
-#print(datetime.datetime.fromtimestamp(endTime).strftime('====== Result Time %S,%f')[:-3])
-
-
 dictConfig({
     'version': 1,
     'formatters': {'default': {
@@ -29,7 +26,7 @@ connector = Connector()
 
 @app.route("/search", methods=['GET', 'POST'])
 def search():
-	connector.startTime = time.time()
+	startTime = time.time()
 
 	token = request.headers.get('Authorization')
 	req = request.form.get('req')
@@ -37,21 +34,12 @@ def search():
 
 	if connector.checkToken(token) == False:
 		return "Token expired or not valid"
+	data = connector.req(token, req, gateway)
 
-	return connector.req(token, req, gateway)
-
-@app.route("/response", methods=['GET', 'POST'])
-def response():
-	data = request.form.get('res')
-
-	endTime = time.time() - connector.startTime
+	endTime = time.time() - startTime
 	print(datetime.datetime.fromtimestamp(endTime).strftime('%H:%M:%S,%f')[:-3])
 
-	return connector.receive(data)
-
-@app.route("/getdata")
-def getdata():
-	return connector.returnData()
+	return data
 
 @app.route("/setup")
 def setup():

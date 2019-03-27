@@ -402,3 +402,28 @@ python3 main.py
 python3 main.py 
 python3 main.py 
 exit
+cd
+ls
+python3 main.py 
+ls
+git add --all .
+git commit
+git push
+git push
+ls
+exit
+cd
+ls
+python3 main.py 
+nano main.py 
+python3 main.py 
+nano Connector.py 
+python3 main.py 
+nano main.py 
+nano Connector.py 
+python3 main.py 
+ls
+cat address 
+nano Connector.py 
+python3 main.py 
+exit
